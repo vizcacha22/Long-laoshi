@@ -1,18 +1,27 @@
-allprojects {
+buildscript {
     repositories {
         google()
-        jcenter()
+        mavenCentral()
+    }
+
+    dependencies {
+        // Kotlin Plugin required for AGP 8.x
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:2.0.21"
+
+        // Google Services
+        classpath "com.google.gms:google-services:4.4.2"
     }
 }
 
-rootProject.buildDir = '../build'
-subprojects {
-    project.buildDir = "${rootProject.buildDir}/${project.name}"
-}
-subprojects {
-    project.evaluationDependsOn(':app')
+allprojects {
+    repositories {
+        google()
+        mavenCentral()
+    }
 }
 
-tasks.register("clean", Delete) {
-    delete rootProject.buildDir
+rootProject.buildDir = "../build"
+
+subprojects {
+    project.buildDir = "${rootProject.buildDir}/${project.name}"
 }
