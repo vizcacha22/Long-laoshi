@@ -13,6 +13,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   getUserData() async {
     final user = FirebaseAuthService().currentUser;
+    print(user);
     setState(() {
       name = user?.displayName;
       email = user?.email;
@@ -49,9 +50,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ),
             ),
             const SizedBox(height: 50),
-            itemProfile('Nombre', splitName!, Icons.person_outlined),
+            itemProfile('Nombre', splitName ?? "", Icons.person_outlined),
             const SizedBox(height: 40),
-            itemProfile('Email', email!, Icons.email_outlined),
+            itemProfile('Email', email ?? "", Icons.email_outlined),
             const SizedBox(
               height: 100,
             ),

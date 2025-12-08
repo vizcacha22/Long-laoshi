@@ -132,6 +132,7 @@ class _RegistroScreenState extends State<RegistroScreen> {
 
     String email = _emailController.text;
     String password = _passwordController.text;
+    String username = _usernameController.text;
 
     User? user = await _auth.signUpWithEmailAndPassword(email, password);
 
@@ -139,6 +140,8 @@ class _RegistroScreenState extends State<RegistroScreen> {
       isSigningUp = false;
     });
     if (user != null) {
+      await user.updateDisplayName(username);
+      await user.reload();
       print("Usuario creado con éxito");
       NavigatorService.pushNamed(AppRoutes.homeScreen);
     } else {
